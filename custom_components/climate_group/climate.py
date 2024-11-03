@@ -283,9 +283,13 @@ class ClimateGroup(GroupEntity, ClimateEntity):
         hvac_actions = list(find_state_attributes(states, ATTR_HVAC_ACTION))
         if hvac_actions:
             current_hvac_actions = [a for a in hvac_actions if a != HVACAction.OFF]
-            # return the most common action if it is not off
+            # return HVACAction.HEATING if any set to heat, or most common otherwise
             if current_hvac_actions:
-                self._attr_hvac_action = max(set(current_hvac_actions), key=current_hvac_actions.count)
+                if any(a == HVACAction.HEATING for a in current_hvac_actions): 
+                    self._attr_hvac_action = HVACAction.HEATING
+                else:
+                    # set the most common action
+                    self._attr_hvac_action = max(set(current_hvac_actions), key=current_hvac_actions.count)
             # return HVACAction.OFF if all actions are set to off
             elif all(a == HVACAction.OFF for a in hvac_actions):
                 self._attr_hvac_action = HVACAction.OFF
