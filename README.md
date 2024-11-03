@@ -11,7 +11,7 @@ Further edited to adjust for heat/idle logic by snakkles: this fork sets the cli
 ## Changelog
 
 ### 1.0.8
-- Changed `hvac_action` to be `heat` when any members have that value set themselves
+- Set `hvac_action` to `heat` when any members have that value set themselves
 
 ### 1.0.7
 - Changed behaviour for Action 'turn on': Use the most common HVAC mode
