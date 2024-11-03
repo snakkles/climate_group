@@ -6,8 +6,12 @@
 
 Inspired/copied from Home Assistant component ["Light group"](https://github.com/home-assistant/home-assistant/blob/dev/homeassistant/components/group/light.py)
 
+Further edited to adjust for heat/idle logic by snakkles: this fork sets the climate group `hvac_action` to `heat` if any controls in the group call for heat. This makes my logic work properly - it may not for you
 
 ## Changelog
+
+### 1.0.8
+- Changed `hvac_action` to be `heat` when any members have that value set themselves
 
 ### 1.0.7
 - Changed behaviour for Action 'turn on': Use the most common HVAC mode
@@ -36,7 +40,7 @@ Inspired/copied from Home Assistant component ["Light group"](https://github.com
 ## How to install:
 
 ### HACS
-Add this repo **https://github.com/bjrnptrsn/climate_group** to the HACS store and install from there.
+Add this repo **https://github.com/snakkles/climate_group** to the HACS store and install from there.
 
 ### Local installation
 Copy both .py files to folder: ***config/custom_components/climate_group***
